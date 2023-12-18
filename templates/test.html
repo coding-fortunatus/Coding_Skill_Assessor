@@ -9,37 +9,55 @@
   </head>
   <body>
     <header>
-      <h1>Coding Test</h1>
+      <h2>Python Test</h2>
     </header>
-
-    <div id="instructions">
-      <!-- Insert coding challenge instructions here -->
-      <p>Write a function that...</p>
-    </div>
-
-    <div>
-      <label for="code-editor">Your Solution:</label>
-      <textarea
-        id="code-editor"
-        placeholder="Write your code here..."
-      ></textarea>
-    </div>
-
-    <button id="submit-btn" onclick="runCode()">Submit</button>
-
-    <div id="output">
-      <!-- Output or test results will be displayed here -->
+    <div class="test-dashboard">
+      <section class="question">
+        <div class="question-header">
+          <h2>Question</h2>
+        </div>
+      </section>
+      <section class="code">
+        <div class="code-header">
+          <h2>Code</h2>
+        </div>
+        <div class="code-container">
+          <textarea class="code-area" name="code"></textarea>
+        </div>
+      </section>
     </div>
 
     <script>
-      function runCode() {
-        // Retrieve code from the editor
-        var userCode = document.getElementById("code-editor").value;
+      document
+        .getElementById("code-area")
+        .addEventListener("input", function (event) {
+          if (event.inputType === "insertText" && event.data === "\n") {
+            event.preventDefault();
 
-        // You can execute the code or perform tests here
-        // Display the output or results in the 'output' div
-        document.getElementById("output").innerHTML = "<p>Output: ...</p>";
-      }
+            var textarea = event.target;
+            var cursorPosition = textarea.selectionStart;
+
+            // Get the text before and after the cursor
+            var textBeforeCursor = textarea.value.substring(0, cursorPosition);
+            var textAfterCursor = textarea.value.substring(cursorPosition);
+
+            // Find the indentation of the current line
+            var lineStart = textBeforeCursor.lastIndexOf("\n") + 1;
+            var indentation = textBeforeCursor
+              .substring(lineStart)
+              .match(/^\s*/)[0];
+
+            // Insert newline and indentation
+            textarea.value =
+              textBeforeCursor + "\n" + indentation + textAfterCursor;
+
+            // Move the cursor to the correct position
+            textarea.setSelectionRange(
+              cursorPosition + indentation.length + 1,
+              cursorPosition + indentation.length + 1
+            );
+          }
+        });
     </script>
   </body>
 </html>
