@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>Coding Test</title>
+  </head>
+  <body>
+    <header>
+      <h1>Coding Test</h1>
+    </header>
+
+    <div id="instructions">
+      <!-- Insert coding challenge instructions here -->
+      <p>Write a function that...</p>
+    </div>
+
+    <div>
+      <label for="code-editor">Your Solution:</label>
+      <textarea
+        id="code-editor"
+        placeholder="Write your code here..."
+      ></textarea>
+    </div>
+
+    <button id="submit-btn" onclick="runCode()">Submit</button>
+
+    <div id="output">
+      <!-- Output or test results will be displayed here -->
+    </div>
+
+    <script>
+      function runCode() {
+        // Retrieve code from the editor
+        var userCode = document.getElementById("code-editor").value;
+
+        // You can execute the code or perform tests here
+        // Display the output or results in the 'output' div
+        document.getElementById("output").innerHTML = "<p>Output: ...</p>";
+      }
+    </script>
+  </body>
+</html>
