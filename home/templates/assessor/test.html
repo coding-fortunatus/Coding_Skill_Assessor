@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+		<title>Coding Test</title>
+	</head>
+	<body>
+		<header>
+			<h2>Python Test</h2>
+		</header>
+		<div class="test-dashboard">
+			<section class="question">
+				<div class="question-header">
+					<h2>Question</h2>
+				</div>
+			</section>
+			<section class="code">
+				<div class="code-header">
+					<h2>Code</h2>
+					<button class="run">Run</button>
+				</div>
+				<div class="code-container">
+					<textarea class="code-area" name="code"></textarea>
+				</div>
+				<div class="code-result">
+					<h4>Output</h4>
+					<div class="outputs"></div>
+					<!-- <span> &rarr; Running... </span> -->
+				</div>
+			</section>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/gh/pythonpad/brython-runner/lib/brython-runner.bundle.js"></script>
+		<script>
+			const code = document.querySelector(".code-area");
+			const outputs = document.querySelector(".outputs");
+			const runner = new BrythonRunner({
+				stdout: {
+					write(content) {
+						// Show output messages here.
+						outputs.insertAdjacentHTML(
+							"beforeend",
+							`<span class="output success">&rarr; ${content}</span>`
+						);
+					},
+					flush() {},
+				},
+				stderr: {
+					write(content) {
+						// Show error messages here.
+						outputs.insertAdjacentHTML(
+							"beforeend",
+							`<span class="output error"> &otimes; ${content}</span>`
+						);
+					},
+					flush() {},
+				},
+				stdin: {
+					async readline() {
+						var userInput = prompt();
+						outputs.insertAdjacentHTML(
+							"beforeend",
+							`<span class="output"> &rarr; ${content}</span>`
+						);
+						return userInput;
+					},
+				},
+			});
+			document
+				.querySelector(".run")
+				.addEventListener("click", async () => {
+					let res = await runner.runCode(code.value);
+					console.log(res);
+				});
+		</script>
+	</body>
+</html>
