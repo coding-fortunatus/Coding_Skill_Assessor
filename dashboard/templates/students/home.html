@@ -1,0 +1,12 @@
+{% extends "students/base.html" %}
+{% block students %}
+    <div class="container- flex-grow-1 container-p-y">       
+        <div class="card text-center mb-3">
+            <div class="card-body">
+                <h5 class="card-title">You have taken any test yet.</h5>
+                <p class="card-text">Take the test and make you submissions to make to see your paerformance</p>
+                <a href="{% url "test" 'python' %}" class="btn btn-primary">Take test</a>
+            </div>
+        </div>
+    </div>
+{% endblock students %}

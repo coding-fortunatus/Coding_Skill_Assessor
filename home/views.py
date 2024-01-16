@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 
@@ -32,12 +33,21 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')  # Update with your actual home URL
+                if user.is_staff:
+                    return redirect('admin_panel')
+                else:
+                    return redirect('app')  # Update with your actual home URL
             else:
                 messages.error(request, 'Invalid username or password')
     else:
         form = LoginForm()
     return render(request, template_name='assessor/login.html', context={'form': form})
+
+
+@login_required(redirect_field_name="login")
+def logout_view(request):
+    logout(request)
+    return redirect("home")
 
 
 def test(request):
