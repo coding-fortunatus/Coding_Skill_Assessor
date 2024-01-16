@@ -47,7 +47,7 @@ def login_view(request):
 @login_required(redirect_field_name="login")
 def logout_view(request):
     logout(request)
-    return redirect("home")
+    return redirect("login")
 
 
 def test(request):
