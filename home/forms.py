@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class RegisterForm(UserCreationForm):
     email = forms.EmailField()
-    name = forms.CharField(max_length=15)
+    name = forms.CharField(max_length=50)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -32,7 +32,7 @@ class RegisterForm(UserCreationForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label='Username', max_length=15)
+    username = forms.CharField(label='Username', max_length=20)
     password = forms.CharField(label='Password', widget=forms.PasswordInput)
 
     def __init__(self, *args, **kwargs):
