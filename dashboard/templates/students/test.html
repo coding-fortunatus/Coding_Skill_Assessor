@@ -1,81 +1,96 @@
-{% extends "students/base.html" %} {% block students %}
-<div class="container-fluid d-flex flex-column py-2">
-	<div class="d-flex justify-content-between align-items-center">
-		<h1 class="mb-4">{{language.name}}</h1>
-		<h5 id="timer">00:00:00</h5>
-		<a href="{% url 'test' 'python' %}" class="btn btn-primary">Submit</a>
-	</div>
-	<div class="d-flex w-100">
-		<div class="w-50 bg-white p-3">
-			<h2 class="mb-4">Question #1</h2>
-			<h5 class="mb-3">
-				Write a simple python program to greet a user using a print
-				statement without using functions.
-			</h5>
-			<p class="lead mb-3">
-				Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-				auctor. Duis mollis, est non commodo luctus.Duis mollis, est non
-				commodo luctus. Vivamus sagittis lacus vel augue laoreet rutrum
-				faucibus dolor auctor. Duis mollis, est non commodo luctus.Duis
-				mollis, est non commodo luctus. Vivamus sagittis lacus vel augue
-				laoreet rutrum faucibus dolor auctor. Duis mollis, est non
-				commodo luctus.Duis mollis, est non commodo luctus.
-			</p>
-			<h6 class="mb-3">Estimated Time: 3 mins</h6>
+{% extends 'students/base.html' %} {% block students %}
+  <div class="container-fluid d-flex flex-column py-2">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="mb-4">{{ language.name }}</h1>
+      <h5 id="timer">00:00:00</h5>
+      <a href="{% url 'test' 'python' %}" class="btn btn-primary">Submit</a>
+    </div>
+    <div class="d-flex w-100">
+      <div class="w-50 bg-white p-3">
+        <h4 class="mb-4 text-light fw-semibold">Question #1</h4>
+        <div class="container-fluid">
+          <p class="mb-3 h5">Write a simple python program to greet a user using a print statement without using functions.</p>
+        </div>
+        <p class="text-light fw-semibold">Exercise KPI</p>
+        <div class="container demo-inline-spacing mb-4">
+          <ul class="list-group">
+            <div class="row">
+              <li class="list-group-item col-6 d-flex justify-content-between align-items-center">
+                Variable Declarations
+                <span class="badge bg-primary">30%</span>
+              </li>
+              <li class="list-group-item col-6 d-flex justify-content-between align-items-center">
+                Time taken (Coding speed)
+                <span class="badge bg-info">20%</span>
+              </li>
+              <li class="list-group-item col-6 d-flex justify-content-between align-items-center">
+                Code optimization
+                <span class="badge bg-warning">10%</span>
+              </li>
+              <li class="list-group-item col-6 d-flex justify-content-between align-items-center">
+                Program correctness
+                <span class="badge bg-danger">40%</span>
+              </li>
+            </div>
+          </ul>
+        </div>
+        <p class="text-light fw-semibold">Exercise Instruction</p>
+        <div class="demo-inline-spacing">
+          <ol class="list-group list-group-numbered list-group-flush">
+            <li class="list-group-item">Use Python to create a program</li>
+            <li class="list-group-item">Use the `print` statement to display a greeting message</li>
+            <li class="list-group-item">Take user input for their name</li>
+            <li class="list-group-item">Incorporate the entered name into the greeting message</li>
+            <li class="list-group-item">Do not use functions in the program</li>
+          </ol>
+        </div>
+      </div>
+      <textarea id="editor"></textarea>
+    </div>
+  </div>
 
-			<h5 class="mb-3">Score Table</h5>
-			<h6 class="mb-3">Code Test: 40%</h6>
-			<h6 class="mb-3">Variable Declaration Test: 30%</h6>
-			<h6 class="mb-3">Time Test: 20%</h6>
-			<h6 class="mb-3">Another Test: 10%</h6>
-		</div>
-		<textarea id="editor"></textarea>
-	</div>
-</div>
-
-<script>
-	// Initialize CodeMirror
-	var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
-		mode: "python",
-		lineNumbers: true,
-		indentUnit: 4,
-		theme: "default", // You can change the theme here
-	});
-
-	function formatTime(timeInSeconds) {
-		const hours = Math.floor(timeInSeconds / 3600);
-		const minutes = Math.floor((timeInSeconds % 3600) / 60);
-		const seconds = timeInSeconds % 60;
-
-		const formattedHours = hours.toString().padStart(2, "0");
-		const formattedMinutes = minutes.toString().padStart(2, "0");
-		const formattedSeconds = seconds.toString().padStart(2, "0");
-
-		return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
-	}
-
-	function startTimer(durationInSeconds) {
-		let timeRemaining = durationInSeconds;
-
-		function updateTimer() {
-			document.getElementById("timer").textContent =
-				formatTime(timeRemaining);
-			timeRemaining--;
-
-			if (timeRemaining < 0) {
-				clearInterval(timerInterval);
-				alert("Timer completed!");
-			}
-		}
-
-		// Initial display
-		updateTimer();
-
-		// Update the timer every second
-		const timerInterval = setInterval(updateTimer, 1000);
-	}
-
-	// Start the timer with a duration of 5 minutes (300 seconds)
-	startTimer(300);
-</script>
-{% endblock students %}
+  <script>
+    // Initialize CodeMirror
+    var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+      mode: 'python',
+      lineNumbers: true,
+      indentUnit: 4,
+      theme: 'default' // You can change the theme here
+    })
+    
+    function formatTime(timeInSeconds) {
+      const hours = Math.floor(timeInSeconds / 3600)
+      const minutes = Math.floor((timeInSeconds % 3600) / 60)
+      const seconds = timeInSeconds % 60
+    
+      const formattedHours = hours.toString().padStart(2, '0')
+      const formattedMinutes = minutes.toString().padStart(2, '0')
+      const formattedSeconds = seconds.toString().padStart(2, '0')
+    
+      return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`
+    }
+    
+    function startTimer(durationInSeconds) {
+      let timeRemaining = durationInSeconds
+    
+      function updateTimer() {
+        document.getElementById('timer').textContent = formatTime(timeRemaining)
+        timeRemaining--
+    
+        if (timeRemaining < 0) {
+          clearInterval(timerInterval)
+          alert('Timer completed!')
+        }
+      }
+    
+      // Initial display
+      updateTimer()
+    
+      // Update the timer every second
+      const timerInterval = setInterval(updateTimer, 1000)
+    }
+    
+    // Start the timer with a duration of 5 minutes (300 seconds)
+    startTimer(300)
+  </script>
+{% endblock %}
