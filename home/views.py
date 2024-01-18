@@ -34,7 +34,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 if user.is_staff:
-                    return redirect('admin_panel')
+                    return redirect('dashboard')
                 else:
                     return redirect('app')  # Update with your actual home URL
             else:
@@ -47,7 +47,7 @@ def login_view(request):
 @login_required(redirect_field_name="login")
 def logout_view(request):
     logout(request)
-    return redirect("home")
+    return redirect("login")
 
 
 def test(request):
