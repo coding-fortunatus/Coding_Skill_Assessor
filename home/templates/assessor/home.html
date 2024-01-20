@@ -1,51 +1,37 @@
-{% extends 'main.html' %} {% block title %} Coding Skill Assessor - Landing Page
-{% endblock title %} {% block content %}
-<!-- Layout wrapper -->
-{% load static %}
-<div class="container-xxl container-p-y">
-	<div class="misc-wrapper">
-		<h2 class="mb-2 mx-2">Coding Skill Assessor!</h2>
-		<p class="mb-4 mx-2">
-			Check your coding skill levels here on our dynamic coding assessor
-			and get more improvements on your skills.
-		</p>
-		<div class="row">
-			<div class="mt-4 mb-4 col">
-				<img
-					src="{% static 'assets/img/illustrations/code assessor.png' %}"
-					alt="Student programming skill assessor"
-					width="500"
-					class="img-fluid"
-					data-app-dark-img="illustrations/code assessor.png"
-					data-app-light-img="illustrations/code assessor.png" />
-			</div>
-			<div class="mt-4 col">
-				<img
-					src="{% static 'assets/img/illustrations/coding skill assessor.png' %}"
-					alt="Student programming skill assessor"
-					width="500"
-					class="img-fluid"
-					data-app-dark-img="illustrations/coding skill assessor.png"
-					data-app-light-img="illustrations/coding skill assessor.png" />
-			</div>
-		</div>
-		<a href="{% url 'login' %}" class="btn btn-primary">Get started</a>
-	</div>
-</div>
+{% extends 'main.html' %} {% block title %}
+  Coding Skill Assessor - Landing Page
+{% endblock %} {% block content %}
+  <!-- Layout wrapper -->
+  {% load static %}
+  <div class="container-xxl container-p-y">
+    <div class="misc-wrapper">
+      <h2 class="mb-2 mx-2">Coding Skill Assessor!</h2>
+      <p class="mb-4 mx-2">Check your coding skill levels here on our dynamic coding assessor and get more improvements on your skills.</p>
+      <div class="row">
+        <div class="mt-4 mb-4 col">
+          <img src="{% static 'assets/img/illustrations/code assessor.png' %}" alt="Student programming skill assessor" width="500" class="img-fluid" data-app-dark-img="illustrations/code assessor.png" data-app-light-img="illustrations/code assessor.png" />
+        </div>
+        <div class="mt-4 col">
+          <img src="{% static 'assets/img/illustrations/coding skill assessor.png' %}" alt="Student programming skill assessor" width="500" class="img-fluid" data-app-dark-img="illustrations/coding skill assessor.png" data-app-light-img="illustrations/coding skill assessor.png" />
+        </div>
+      </div>
+      <a href="{% url 'login' %}" class="btn btn-primary">Get started</a>
+    </div>
+  </div>
 
-<!-- Core JS -->
-<!-- build:js assets/vendor/js/core.js -->
-<script src="../assets/vendor/libs/jquery/jquery.js"></script>
-<script src="../assets/vendor/libs/popper/popper.js"></script>
-<script src="../assets/vendor/js/bootstrap.js"></script>
-<script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+  <!-- Core JS -->
+  <!-- build:js assets/vendor/js/core.js -->
+  <script src="{% static 'assets/vendor/libs/jquery/jquery.js' %}"></script>
+  <script src="{% static 'assets/vendor/libs/popper/popper.js' %}"></script>
+  <script src="{% static 'assets/vendor/js/bootstrap.js' %}"></script>
+  <script src="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
 
-<script src="../assets/vendor/js/menu.js"></script>
-<!-- endbuild -->
+  <script src="{% static 'assets/vendor/js/menu.js' %}"></script>
+  <!-- endbuild -->
 
-<!-- Vendors JS -->
+  <!-- Vendors JS -->
 
-<!-- Main JS -->
-<script src="../assets/js/main.js"></script>
-<!-- / Layout wrapper -->
-{% endblock content %}
+  <!-- Main JS -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  <!-- / Layout wrapper -->
+{% endblock %}
