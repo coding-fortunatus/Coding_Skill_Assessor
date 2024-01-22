@@ -1,41 +1,63 @@
-{% extends "students/base.html" %} {% block students %} {% load static %}
-<div class="container flex-grow-1 container-p-y">
-	<div class="row">
-		<div class="col align-self-center order-0">
-			<div class="card">
-				<div class="d-flex align-items-end row">
-					<div class="col-sm-7">
-						<div class="card-body">
-							<h5 class="card-title text-primary">
-								Congratulations {{request.user.username}}! 🎉
-							</h5>
-							<p class="mb-4">
-								You haven't taken any
-								<span class="fw-bold"> TEST </span> yet! <br />
-								<br />
-								Click the button below to begin now.
-							</p>
-
-							<a
-								href="{% url 'test' 'python' %}"
-								class="btn btn-primary"
-								>Take test</a
-							>
-						</div>
-					</div>
-					<div class="col-sm-5 text-center text-sm-left">
-						<div class="card-body pb-0 px-0 px-md-2">
-							<img
-								src="{% static 'assets/img/illustrations/man-with-laptop-light.png' %}"
-								height="140"
-								alt="View Badge User"
-								data-app-dark-img="illustrations/man-with-laptop-dark.png"
-								data-app-light-img="illustrations/man-with-laptop-light.png" />
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-{% endblock students %}
+{% extends 'students/base.html' %} {% block students %}
+  {% load static %}
+  <div class="container flex-grow-1 container-p-y">
+    <div class="row">
+      <div class="col align-self-center order-0">
+        <div class="card">
+          <div class="d-flex align-items-end row">
+            <div class="col-sm-7">
+              <div class="card-body">
+                <h5 class="card-title text-primary">Hi 👋 {{ request.user.username }}!</h5>
+                <p class="mb-4">
+                  You haven't taken any
+                  <span class="fw-bold">TEST</span> yet! <br />
+                  <br />
+                  {% comment %}🎉{% endcomment %}Click the button below to begin now.
+                </p>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">Take Test</button>
+                <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+                  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modalCenterTitle">User Instruction</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <ol>
+                          <li>
+                            <strong>Read the Problem Statement:</strong> Carefully read the problem statement provided below.
+                          </li>
+                          <li>
+                            <strong>Write Code:</strong> Write a solution in the programming language mentioned in the problem statement.
+                          </li>
+                          <li>
+                            <strong>Review Your Code:</strong> Review your code with different inputs to ensure it works correctly.
+                          </li>
+                          <li>
+                            <strong>Time Limit:</strong> You have an expected time for you to finish each question.
+                          </li>
+                          <li>
+                            <strong>Submit Your Solution:</strong> Submit your solution by pasting the code into the text area provided.
+                          </li>
+                        </ol>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancel</button>
+                        <a href="{% url 'test' 'python' 1 %}" class="btn btn-primary">Take test</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-5 text-center text-sm-left">
+              <div class="card-body pb-0 px-0 px-md-2">
+                <img src="{% static 'assets/img/illustrations/man-with-laptop-light.png' %}" height="140" alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png" data-app-light-img="illustrations/man-with-laptop-light.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

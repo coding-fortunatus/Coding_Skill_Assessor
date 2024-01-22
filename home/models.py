@@ -6,7 +6,7 @@ from django.db import models
 
 class Language(models.Model):
     id = models.UUIDField(
-        primary_key=True, editable=False, default=uuid.uuid4())
+        primary_key=True, editable=False, default=uuid.uuid4)
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=255)
 
