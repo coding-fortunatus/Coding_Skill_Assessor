@@ -3,7 +3,7 @@ Write a python program to calculate the area and perimeter of a circle whose rad
 """
 
 # Constants
-radius = 20
+radius = input("Enter Radius: ")
 
 # Calculate area and perimeter
 area = 3.14 * radius * radius
